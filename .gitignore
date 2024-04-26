@@ -131,7 +131,7 @@ dist
 
 .idea
 
-color
-converters
-dev-ops
-type-check
+/color
+/converters
+/dev-ops
+/type-check

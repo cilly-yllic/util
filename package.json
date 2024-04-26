@@ -1,7 +1,7 @@
 {
   "name": "my-gadgetry",
   "type": "module",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "description": "",
   "author": "",
   "repository": {
@@ -27,12 +27,14 @@
     "clean": "rimraf ./dist ./dev-ops ./type-check",
     "tsc": "tsc -p tsconfig.publish.json && tsc-alias -p tsconfig.publish.json",
     "generate": "tsx --tsconfig ./tsconfig.zx.json ./tools/generate-alias.zx.ts",
-    "ci:update-version": "zx ./scripts/ci/update-version.mjs",
+    "ci:update-version": "tsx --tsconfig ./tsconfig.zx.json ./scripts/ci/update-version.zx.ts",
+
     "//--- test ---//": "",
     "test": "run-s test:*",
     "test:lint": "npm run lint",
     "test:prettier": "npm run prettier:check",
     "test:jest": "npm run jest",
+
     "//--- build ---//": "",
     "build": "run-s build:*",
     "build:test": "npm run test",

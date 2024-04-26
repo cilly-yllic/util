@@ -13,7 +13,7 @@ const urlPattern = new RegExp(
 ) // fragment locator
 
 // export const isNumber = (value): boolean => getValueType(value) === 'Number'
-export const isNumber = (value: any): boolean => getValueType(value) === 'Number' && !Number.isNaN(value)
+const _isNumber = (value: any): boolean => getValueType(value) === 'Number' && !Number.isNaN(value)
 export const isBoolean = (value: any): boolean => getValueType(value) === 'Boolean'
 export const isString = (value: any): boolean => getValueType(value) === 'String'
 export const isArray = (value: any): boolean => getValueType(value) === 'Array'
@@ -21,10 +21,13 @@ export const isArray = (value: any): boolean => getValueType(value) === 'Array'
 export const isObject = (value: any): boolean => getValueType(value) === 'Object'
 export const isDate = (value: any): boolean => getValueType(value) === 'Date'
 export const isUrlString = (value: string): boolean => urlPattern.test(value)
-export const isOnlyNumbers = (name: string) => onlyNumberReg.test(name)
-export const isNumberAllowString = (value: any) => {
-  if (isNumber(value)) {
+export const isStringNumbers = (name: string) => onlyNumberReg.test(name)
+export const isNumber = (value: any, allowString = false) => {
+  if (_isNumber(value)) {
     return value - value === 0
+  }
+  if (!allowString) {
+    return false
   }
   if (isString(value) && value.trim() !== '') {
     return Number.isFinite ? Number.isFinite(+value) : isFinite(+value)
