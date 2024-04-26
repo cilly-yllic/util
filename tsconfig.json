@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "esNext",
+    "module": "NodeNext",
+    "types": ["jest", "node"],
+    "moduleResolution": "NodeNext",
+    "allowJs": true,
+    "checkJs": false,
+    "declaration": true,
+    "strict": true,
+    "outDir": "dist",
+    "rootDir": "./src",
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "typeRoots": ["node_modules/@types", "src/types"],
+    "baseUrl": "./",
+    "paths": {
+      "~internal/*": ["./src/_internal/*"],
+      "~core/*": ["./src/_core/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.spec.ts"]
+}
