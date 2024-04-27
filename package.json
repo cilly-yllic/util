@@ -28,7 +28,7 @@
     "clean": "rimraf ./dist ./dev-ops ./type-check",
     "tsc": "tsc -p tsconfig.publish.json && tsc-alias -p tsconfig.publish.json",
     "generate": "tsx --tsconfig ./tsconfig.zx.json ./tools/generate-alias.zx.ts",
-    "ci:update-version": "tsx --tsconfig ./tsconfig.zx.json ./scripts/ci/update-version.zx.ts",
+    "ci:update-version": "tsx --tsconfig ./tsconfig.zx.json ./tools/ci/update-version.zx.ts",
 
     "//--- test ---//": "",
     "test": "run-s test:*",
