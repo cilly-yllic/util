@@ -1,6 +1,7 @@
 /* eslint-disable import/no-restricted-paths */
 import { $ } from 'zx'
-import { isNumber, isString } from '../src/modules/type-check.js'
+
+import { isNumber } from '../src/modules/type-check.js'
 /* eslint-enable import/no-restricted-paths */
 
 const VERSION_MAP = {

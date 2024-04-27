@@ -1,7 +1,7 @@
 {
   "name": "my-gadgetry",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "author": "",
   "repository": {
@@ -20,6 +20,7 @@
     "prepare": "husky",
     "jest": "jest",
     "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
     "_prettier": "prettier .",
     "prettier:write": "npm run _prettier -- --write",
     "prettier": "npm run prettier:write",
@@ -27,20 +28,20 @@
     "clean": "rimraf ./dist ./dev-ops ./type-check",
     "tsc": "tsc -p tsconfig.publish.json && tsc-alias -p tsconfig.publish.json",
     "generate": "tsx --tsconfig ./tsconfig.zx.json ./tools/generate-alias.zx.ts",
-    "ci:update-version": "tsx --tsconfig ./tsconfig.zx.json ./scripts/ci/update-version.zx.ts",
-
+    "ci:update-version": "tsx --tsconfig ./tsconfig.zx.json ./tools/update-version.zx.ts",
     "//--- test ---//": "",
     "test": "run-s test:*",
     "test:lint": "npm run lint",
     "test:prettier": "npm run prettier:check",
     "test:jest": "npm run jest",
-
     "//--- build ---//": "",
     "build": "run-s build:*",
     "build:test": "npm run test",
     "build:clean": "npm run clean",
     "build:tsc": "npm run tsc",
-    "build:generate": "npm run generate"
+    "build:generate": "npm run generate",
+    "//--- publish ---//": "",
+    "publish:build": "run-s build:{clean,tsc,generate}"
   },
   "dependencies": {
     "@actions/core": "^1.10.1",
@@ -73,12 +74,16 @@
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.8",
-    "tsx": "^4.7.2",
+    "tsx": "^4.7.3",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.7.1"
   },
   "exports": {
     ".": "./dist/**/*.js",
+    "./color": "./dist/modules/color.js",
+    "./converters/array": "./dist/modules/converters/array.js",
+    "./converters/number": "./dist/modules/converters/number.js",
+    "./converters/string": "./dist/modules/converters/string.js",
     "./dev-ops/package-generator/generate-alias": "./dist/modules/dev-ops/package-generator/generate-alias.js",
     "./type-check": "./dist/modules/type-check.js",
     "./package.json": "./package.json"
@@ -86,6 +91,8 @@
   "files": [
     "!**/__tests__",
     "dist",
+    "color",
+    "converters",
     "dev-ops",
     "type-check",
     "src",
