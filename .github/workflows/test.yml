@@ -67,4 +67,34 @@ jobs:
         run: npm ci
 
       - name: List test
-        run: npm run lint
+        run: npm run test:lint
+  jest:
+    runs-on: ubuntu-latest
+    name: Node .nvmrc file version test
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          cache: 'npm'
+          node-version-file: ${{ env.NODE_VERSION_FILE }}
+      - run: npm ci
+      - run: npm run test:jest
+  jest-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 20, 21]
+    name: Node ${{ matrix.node }} test
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run test:jest

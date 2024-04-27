@@ -20,6 +20,7 @@
     "prepare": "husky",
     "jest": "jest",
     "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
     "_prettier": "prettier .",
     "prettier:write": "npm run _prettier -- --write",
     "prettier": "npm run prettier:write",
@@ -40,7 +41,10 @@
     "build:test": "npm run test",
     "build:clean": "npm run clean",
     "build:tsc": "npm run tsc",
-    "build:generate": "npm run generate"
+    "build:generate": "npm run generate",
+
+    "//--- publish ---//": "",
+    "publish:build": "run-s build:{clean,tsc,generate}"
   },
   "dependencies": {
     "@actions/core": "^1.10.1",
@@ -79,6 +83,10 @@
   },
   "exports": {
     ".": "./dist/**/*.js",
+    "./color": "./dist/modules/color.js",
+    "./converters/array": "./dist/modules/converters/array.js",
+    "./converters/number": "./dist/modules/converters/number.js",
+    "./converters/string": "./dist/modules/converters/string.js",
     "./dev-ops/package-generator/generate-alias": "./dist/modules/dev-ops/package-generator/generate-alias.js",
     "./type-check": "./dist/modules/type-check.js",
     "./package.json": "./package.json"
@@ -86,6 +94,8 @@
   "files": [
     "!**/__tests__",
     "dist",
+    "color",
+    "converters",
     "dev-ops",
     "type-check",
     "src",
