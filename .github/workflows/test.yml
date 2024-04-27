@@ -69,6 +69,7 @@ jobs:
       - name: List test
         run: npm run test:lint
   jest:
+    needs: setup
     runs-on: ubuntu-latest
     name: Node .nvmrc file version test
     steps:
@@ -83,6 +84,7 @@ jobs:
       - run: npm ci
       - run: npm run test:jest
   jest-matrix:
+    needs: setup
     runs-on: ubuntu-latest
     strategy:
       matrix:
