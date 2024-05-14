@@ -34,4 +34,16 @@ export const isNumber = (value: any, allowString = false) => {
   }
   return false
 }
+
+export const isJson = (str: string): boolean => {
+  if (!isString(str)) {
+    return false
+  }
+  try {
+    const result = JSON.parse(str)
+    return isString(result) || isObject(result)
+  } catch (err) {
+    return false
+  }
+}
 /* eslint-enable */

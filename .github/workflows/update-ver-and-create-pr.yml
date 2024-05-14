@@ -34,8 +34,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - run: npm ci --omit=dev --ignore-scripts
-      - run: npm i -D tsx
+      - run: npm ci --ignore-scripts
       - run: npm run ci:update-version
 
       - name: Push auto-fixed files
@@ -54,6 +53,19 @@ jobs:
       - name: Get Tag Name
         uses: ./.github/actions/get-tag-name
         id: get-tag-name
+      - name: Create Tag
+        uses: actions/github-script@v7
+        env:
+          TAG: '${{ steps.get-tag-name.outputs.tag-name }}+stg'
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/${{ steps.get-tag-name.outputs.tag-name }}+stg",
+              sha: context.sha
+            })
 
       - id: tag-name
         run: echo "value=${{ steps.get-tag-name.outputs.tag-name }}" >> $GITHUB_OUTPUT
@@ -104,8 +116,9 @@ jobs:
       - name: PR Check
         id: check-pr
         run: |
-          MAIN=$(gh pr list -B main)
-          echo "exists=$MAIN" >> $GITHUB_OUTPUT
+          MAIN_PR=$(gh pr list -B main --author "@me")
+          [[ -z $MAIN_PR ]] && EXISTS="false" || EXISTS="true"
+          echo "exists=$EXISTS" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
