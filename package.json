@@ -29,17 +29,20 @@
     "tsc": "tsc -p tsconfig.publish.json && tsc-alias -p tsconfig.publish.json",
     "generate": "tsx --tsconfig ./tsconfig.zx.json ./tools/generate-alias.zx.ts",
     "ci:update-version": "tsx --tsconfig ./tsconfig.zx.json ./tools/update-version.zx.ts",
+
     "//--- test ---//": "",
     "test": "run-s test:*",
     "test:lint": "npm run lint",
     "test:prettier": "npm run prettier:check",
     "test:jest": "npm run jest",
+
     "//--- build ---//": "",
     "build": "run-s build:*",
     "build:test": "npm run test",
     "build:clean": "npm run clean",
     "build:tsc": "npm run tsc",
     "build:generate": "npm run generate",
+
     "//--- publish ---//": "",
     "publish:build": "run-s build:{clean,tsc,generate}"
   },
