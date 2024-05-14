@@ -4,13 +4,18 @@ import { writeJsonSync } from 'fs-extra/esm'
 
 import { cleanDirectory } from './clean-directories.js'
 
-export const writePackageJson = (prefix: string, author: string, name: string, outputDir: string, aliases: string[], ignoreDirectory = '') => {
+export const writePackageJson = (
+  prefix: string,
+  author: string,
+  name: string,
+  outputDir: string,
+  aliases: string[],
+  ignoreDirectory = ''
+) => {
   for (const alias of aliases) {
     const splits = alias.split(/\//g)
-    const outputPaths = splits.filter((dir) => dir !== ignoreDirectory)
-    const relative = outputPaths
-      .map(() => '..')
-      .join('/')
+    const outputPaths = splits.filter(dir => dir !== ignoreDirectory)
+    const relative = outputPaths.map(() => '..').join('/')
     const outputPath = outputPaths.join('/')
     const pkgManifest = {
       name: `${author}/${[name, ...splits].join('-')}`,
