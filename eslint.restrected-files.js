@@ -74,7 +74,7 @@ export const getRules = () => {
   for (const from of dirs) {
     zones.push({
       from: `${from}/*`,
-      target: ['./src/core', ...getTargetPaths(from, dirs)],
+      target: ['./src/_core', ...getTargetPaths(from, dirs)],
       message: `${from}直下のファイルをインポートする際は同階層のファイルか親階層のファイルからしかインポートできません。例外としてsrc/modules内からは可能です。`,
     })
   }
