@@ -8,7 +8,6 @@ on:
 
 env:
   NODE_VERSION_FILE: .nvmrc
-  NPM_ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
 
 jobs:
   update-version:
@@ -36,9 +35,8 @@ jobs:
             ${{ runner.os }}-
 
       - run: npm ci --omit=dev --ignore-scripts
-      - run: npm version patch
-        env:
-          NODE_AUTH_TOKEN: ${{ env.NPM_ACCESS_TOKEN }}
+      - run: npm run ci:update-version
+      - run: npm i --omit=dev --ignore-scripts
 
       - name: Push auto-fixed files
         run: |
