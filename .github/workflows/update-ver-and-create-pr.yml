@@ -34,9 +34,9 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - run: npm ci --omit=dev --ignore-scripts
+      - run: npm ci --ignore-scripts
       - run: npm run ci:update-version
-      - run: npm i --omit=dev --ignore-scripts
+      - run: npm ci --ignore-scripts
 
       - name: Push auto-fixed files
         run: |
