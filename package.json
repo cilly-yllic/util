@@ -88,6 +88,7 @@
     "./converters/number": "./dist/modules/converters/number.js",
     "./converters/string": "./dist/modules/converters/string.js",
     "./dev-ops/package-generator/generate-alias": "./dist/modules/dev-ops/package-generator/generate-alias.js",
+    "./fs": "./dist/modules/fs.js",
     "./type-check": "./dist/modules/type-check.js",
     "./package.json": "./package.json"
   },
@@ -97,6 +98,7 @@
     "color",
     "converters",
     "dev-ops",
+    "fs",
     "type-check",
     "src",
     "package.json",
