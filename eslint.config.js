@@ -41,6 +41,7 @@ export default tseslint.config(
       'trash/**',
       'jest.config.ts',
       '**/*.spec.ts',
+      'fs-test/**',
     ],
   },
   {
