@@ -129,7 +129,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Edit Release PR
-        if: steps.check-pr.outputs.exists != 'true'
+        if: steps.check-pr.outputs.exists == 'true'
         run: gh pr edit -B "main" -t "Release ${{ needs.update-version.outputs.tag-name }}" -b "${{steps.get-summary.outputs.summary}}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
