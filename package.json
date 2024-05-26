@@ -88,6 +88,7 @@
     "./dev-ops/package-generator/generate-alias": "./dist/modules/dev-ops/package-generator/generate-alias.js",
     "./fs": "./dist/modules/fs.js",
     "./type-check": "./dist/modules/type-check.js",
+    "./types/utilities": "./dist/modules/types/utilities.js",
     "./package.json": "./package.json"
   },
   "files": [
